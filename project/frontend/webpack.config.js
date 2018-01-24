@@ -4,6 +4,7 @@ const webpack = require('webpack')
 const ManifestPlugin = require("webpack-manifest-plugin")
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const CleanBuildPlugin = require("./webpack-clean-on-watch")
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -15,9 +16,12 @@ module.exports = {
   entry: {
     main: './src/main.js',
     common: [
-      "vue",
-      "bootstrap/dist/js/bootstrap.js",
-      "bootstrap/dist/css/bootstrap.css",
+        "vue",
+        "jquery/src/jquery.js",
+        "bootstrap/dist/js/bootstrap.js",
+        "bootstrap/dist/css/bootstrap.css",
+        "element-ui",
+        "axios",
     ],
   },
 
@@ -45,8 +49,8 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader',
         include: [
-          path.resolve(__dirname, "src"),
-          path.resolve(__dirname, 'node_modules/webpack-dev-server/client'),
+            path.resolve(__dirname, "src"),
+            path.resolve(__dirname, 'node_modules/webpack-dev-server/client'),
         ]
       },
       {
@@ -99,6 +103,7 @@ module.exports = {
         filename: 'css/[name].[hash:7].css',
         allChunks: true
       }),
+      new CleanBuildPlugin()
   ],
 
   node: {
