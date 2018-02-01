@@ -4,7 +4,7 @@ from flask import render_template
 from backend import app
 from backend import config
 
-@app.route("/")
-@app.route("/index")
+@app.route("/", defaults={"path": ""})
+@app.route("/<path:path>")
 def index():
     return render_template("index.html")
