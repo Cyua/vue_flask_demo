@@ -4,7 +4,7 @@ const webpack = require('webpack')
 const ManifestPlugin = require("webpack-manifest-plugin")
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const CleanBuildPlugin = require("./webpack-clean-on-watch")
+const CleanBuildPlugin = require("webpack-clean-on-watch")
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
